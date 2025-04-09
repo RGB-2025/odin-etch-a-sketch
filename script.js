@@ -5,12 +5,25 @@ let widthField = document.getElementById('width');
 let heightField = document.getElementById('height');
 let errorText = document.getElementById('error');
 let makeGridButton = document.getElementById('make-grid');
+let randomColorsBox = document.getElementById('rand-color');
+let darkeningBox = document.getElementById('darkening');
+
+let randomColors = randomColorsBox.checked;
+let darkening = randomColors.checked;
+
+let darkeningValue = 0;
 
 function resetGrid() {
     if (gridItems) {
         gridContainer.innerHTML = '';
         gridItems = [];
     }
+
+    randomColors = randomColorsBox.checked;
+    darkening = darkeningBox.checked;
+    darkeningValue = 0;
+
+    console.log(randomColors, darkening)
 }
 
 function makeGrid(rows, columns) {
@@ -28,8 +41,29 @@ function makeGrid(rows, columns) {
 
     gridItems.forEach(gridItem => {
         gridItem.addEventListener('mouseover', () => {
-            gridItem.classList.add('colored');
-        });
+            if (darkeningValue != 1 && darkening) {
+                darkeningValue += 0.1;
+            }
+            
+            if (randomColors) {
+                ['r', 'g', 'b'].forEach(channel => {
+                    if (!gridItem.dataset[channel]) {
+                        gridItem.dataset[channel] = Math.floor(Math.random() * 256);
+                    }
+                });
+            
+                const [r, g, b] = ['r', 'g', 'b'].map(channel =>
+                    Math.floor(255 - (255 - gridItem.dataset[channel]) * darkeningValue)
+                );
+            
+                gridItem.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+            
+                if (darkening && darkeningValue < 1) darkeningValue += 0.1;
+            } else {
+                const value = Math.floor(255 * (1 - (darkening ? darkeningValue : 1)));
+                gridItem.style.backgroundColor = `rgb(${value}, ${value}, ${value})`;
+            }
+        });        
     });
 }
 

@@ -12,13 +12,30 @@
         <fieldset>
             <legend>Grid Settings</legend>
 
-            <label for="width">Width:</label>
-            <input type="number" id="width" min="1" max="100" placeholder="1-100" value="16">
-            <p id="width-output"></p>
-            
-            <label for="height">Height:</label>
-            <input type="number" id="height" min="1" max="100" placeholder="1-100" value="16">
-            <p id="height-output"></p>
+            <div class="dimensions">
+                <div class="width">
+                    <label for="width">Width:</label>
+                    <input type="number" id="width" min="1" max="100" placeholder="1-100" value="16">
+                    <p id="width-output"></p>
+                </div>
+                
+                <div class="height">
+                    <label for="height">Height:</label>
+                    <input type="number" id="height" min="1" max="100" placeholder="1-100" value="16">
+                    <p id="height-output"></p>
+                </div>
+            </div>
+
+            <div class="optional">
+                <div class="randomize-colors">
+                    <label for="randomize-colors">Randomize Colors?</label>
+                    <input type="checkbox" name="randomize-colors" id="rand-color">
+                </div>
+                <div class="darkening">
+                    <label for="darkening">Progressively Darken?</label>
+                    <input type="checkbox" name="darkening" id="darkening">
+                </div>
+            </div>
             
             <button id="make-grid">Make Grid!</button>
         </fieldset>

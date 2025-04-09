@@ -10,8 +10,26 @@ body {
 
 fieldset {
     display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    min-width: 0;
+}
+
+.dimensions,
+.optional {
+    display: flex;
+    gap: 1rem;
     align-items: center;
-    gap: 8px;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.width,
+.height {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
 }
 
 #error {
@@ -21,7 +39,7 @@ fieldset {
 .grid-container {
     display: flex;
     flex-wrap: wrap;
-    width: 75%;
+    width: 50vh;
 }
 
 .grid-item {
