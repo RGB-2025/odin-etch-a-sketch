@@ -8,8 +8,25 @@
     <title>Etch-a-Sketch</title>
 </head>
 <body>
+    <div class="controls">
+        <fieldset>
+            <legend>Grid Settings</legend>
+
+            <label for="width">Width:</label>
+            <input type="number" id="width" min="1" max="100" placeholder="1-100" value="16">
+            <p id="width-output"></p>
+            
+            <label for="height">Height:</label>
+            <input type="number" id="height" min="1" max="100" placeholder="1-100" value="16">
+            <p id="height-output"></p>
+            
+            <button id="make-grid">Make Grid!</button>
+        </fieldset>
+        <p id="error"></p>
+    </div>
+    
     <div class="grid-container">
-        
+
     </div>
 </body>
 </html>

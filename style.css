@@ -1,14 +1,21 @@
-@keyframes trail {
-    0% {background-color: black;}
-    100% {background-color: white;}
-}
-
 body {
     min-height: 100vh;
+    flex-direction: column;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0;
+    padding: 1rem;
+}
+
+fieldset {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#error {
+    color: red;
 }
 
 .grid-container {
@@ -19,7 +26,10 @@ body {
 
 .grid-item {
     background-color: white;
-    box-sizing: border-box;
-    border: 0 solid grey;
+
     aspect-ratio: 1 / 1;
+}
+
+.colored {
+    background-color: black;
 }
