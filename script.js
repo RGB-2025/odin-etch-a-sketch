@@ -11,5 +11,12 @@ function makeGrid(rows, columns) {
     }
 }
 
-makeGrid(20, 20);
+makeGrid(50, 50);
 
+gridItems.forEach(gridItem => {
+    gridItem.addEventListener('mouseover', () => {
+        gridItem.style.animation = 'none';
+        gridItem.offsetHeight;
+        gridItem.style.animation = 'trail 1s ease-in-out';
+    });
+});
