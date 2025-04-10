@@ -6,6 +6,8 @@ body {
     align-items: center;
     margin: 0;
     padding: 1rem;
+
+    font-family: 'Courier New', Courier, monospace;
 }
 
 fieldset {
@@ -13,6 +15,10 @@ fieldset {
     flex-direction: column;
     flex-wrap: wrap;
     min-width: 0;
+}
+
+input {
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .dimensions,

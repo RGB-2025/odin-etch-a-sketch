@@ -13,6 +13,13 @@ let darkening = randomColors.checked;
 
 let darkeningValue = 0;
 
+function lerpColor(startArray, endArray, t) {
+    return startArray.map((start, index) => {
+        const end = endArray[index];
+        return start + (end - start) * t
+    });
+}
+
 function resetGrid() {
     if (gridItems) {
         gridContainer.innerHTML = '';
@@ -23,7 +30,7 @@ function resetGrid() {
     darkening = darkeningBox.checked;
     darkeningValue = 0;
 
-    console.log(randomColors, darkening)
+    errorText.textContent = '';
 }
 
 function makeGrid(rows, columns) {
@@ -41,29 +48,24 @@ function makeGrid(rows, columns) {
 
     gridItems.forEach(gridItem => {
         gridItem.addEventListener('mouseover', () => {
-            if (darkeningValue != 1 && darkening) {
+            if (darkeningValue < 1 && darkening) {
                 darkeningValue += 0.1;
             }
+
+            let color = randomColors ? [
+                Math.floor(Math.random() * 205) + 50, // Ranges between 100-255
+                Math.floor(Math.random() * 205) + 50, // Ranges between 100-255
+                Math.floor(Math.random() * 205) + 50  // Ranges between 100-255
+            ] : [0, 0, 0];
+
+            color = lerpColor([255,255,255], color, darkening ? darkeningValue : 1);
             
-            if (randomColors) {
-                ['r', 'g', 'b'].forEach(channel => {
-                    if (!gridItem.dataset[channel]) {
-                        gridItem.dataset[channel] = Math.floor(Math.random() * 256);
-                    }
-                });
-            
-                const [r, g, b] = ['r', 'g', 'b'].map(channel =>
-                    Math.floor(255 - (255 - gridItem.dataset[channel]) * darkeningValue)
-                );
-            
-                gridItem.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
-            
-                if (darkening && darkeningValue < 1) darkeningValue += 0.1;
-            } else {
-                const value = Math.floor(255 * (1 - (darkening ? darkeningValue : 1)));
-                gridItem.style.backgroundColor = `rgb(${value}, ${value}, ${value})`;
-            }
-        });        
+            gridItem.style.backgroundColor = `rgb(
+                ${color[0]},
+                ${color[1]},
+                ${color[2]}
+            )`;
+        });    
     });
 }
 
